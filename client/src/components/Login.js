@@ -8,17 +8,17 @@ function Login() {
                 <form>
                     <h2 className="text-center">Log in</h2>
                     <hr className="my-4"/>
-                    <div className="form-group my-2">
+                    <div className="form-group my-3">
                         <div className="input-group">
                             <div className="input-group-prepend">
                                 <span className="input-group-text">
                                     <span className="fa fa-user"></span>
                                 </span>
                             </div>
-                            <input type="text" className="form-control" name="name" placeholder="Username" required="required" />
+                            <input type="text" className="form-control" name="email" placeholder="Email" required="required" />
                         </div>
                     </div>
-                    <div className="form-group my-2">
+                    <div className="form-group my-3">
                         <div className="input-group">
                             <div className="input-group-prepend">
                                 <span className="input-group-text">

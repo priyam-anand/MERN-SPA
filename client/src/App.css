@@ -155,8 +155,37 @@ input[type=number]::-webkit-outer-spin-button {
   top: -11px;
   z-index: 1;
 }
-/* About css */
-
+.my_card{
+  border-radius: 0px;
+  height: 20%;
+  box-shadow: 3px 3px 8px rgb(180, 180, 180);
+}
+.my-input{
+  border-radius:0px;
+  box-shadow: 2px 2px 5px rgb(172, 172, 172);
+}
+.my-container{
+  border-radius: 0;
+  box-shadow: 3px 3px 8px rgb(180, 180, 180);
+}
+textarea{
+    padding: 1.2rem;
+    color: #969fa4;  
+    border:1px solid rgb(209, 209, 209);
+    box-shadow: 3px 3px 8px rgb(180, 180, 180);
+}
+textarea:focus{
+  border-color: #5cb85c;
+}
+.main-home{
+  height: 87vh;
+  width: 100vw;
+  background-image: linear-gradient(to right,rgb(255, 241, 221),white,rgb(255, 241, 221) );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 h2 {
   color: #333;
   text-align: center;
@@ -180,87 +209,28 @@ h2::after {
   right: 0;
   bottom: -10px;
 }
-.carousel {
-  width: 650px;
-  margin: 0 auto;
-  padding-bottom: 50px;
+.about-container{
+  width: 60vw;
 }
-.carousel .carousel-item {
-  color: #999;
-  font-size: 14px;
-  text-align: center;
-  overflow: hidden;
-  min-height: 340px;
-  margin-top: 2em;
+.profile-head{
+  color: #466da7;
 }
-.carousel .carousel-item a {
-  color: #eb7245;
-}
-.carousel .img-box {
-  width: 145px;
-  height: 145px;
-  margin: 0 auto;
-  border-radius: 50%;
-}
-.carousel .img-box img {
+.user-img{
   width: 100%;
   height: 100%;
-  display: block;
-  border-radius: 50%;
+  padding: 2rem;
 }
-.carousel .testimonial {
-  padding: 30px 0 10px;
+.social-link{
+  width: auto;
+  text-decoration: none;
+  color: rgb(115, 109, 182);
+  font-weight: 500;
+  padding: 0.2rem;
 }
-.carousel .overview {
-  text-align: center;
-  padding-bottom: 5px;
+label{
+  color: rgb(139, 139, 139);
 }
-.carousel .overview b {
-  color: #333;
-  font-size: 15px;
-  text-transform: uppercase;
-  display: block;
-  padding-bottom: 5px;
-}
-.carousel .star-rating i {
-  font-size: 18px;
-  color: #ffdc12;
-}
-.carousel-control-prev,
-.carousel-control-next {
-  width: 30px !important;
-  height: 30px !important;
-  border-radius: 50% !important;
-  background: #999 !important;
-  text-shadow: none !important;
-  top: 4px !important;
-}
-.carousel-control-prev i,
-.carousel-control-next i {
-  font-size: 20px !important;
-  margin-right: 2px !important;
-}
-.carousel-control-prev {
-  left: auto !important;
-  right: 40px !important;
-}
-.carousel-control-next i {
-  margin-right: -2px !important;
-}
-.carousel .carousel-indicators {
-  bottom: 15px !important;
-}
-.carousel-indicators li,
-.carousel-indicators li.active {
-  width: 11px !important;
-  height: 1px !important;
-  margin: 1px 5px !important;
-  border-radius: 50% !important;
-}
-.carousel-indicators li {
-  background: #e2e2e2 !important;
-  border: none !important;
-}
-.carousel-indicators li.active {
-  background: #888 !important;
-}
+/* .error-img{
+  width: 100%;
+  height: 100%;
+} */
