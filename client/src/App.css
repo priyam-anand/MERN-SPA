@@ -230,7 +230,7 @@ h2::after {
 label{
   color: rgb(139, 139, 139);
 }
-/* .error-img{
-  width: 100%;
-  height: 100%;
-} */
+.form-text{
+  color: black;
+  font-weight: normal;
+}

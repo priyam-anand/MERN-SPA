@@ -24,9 +24,6 @@ const About = () => {
             
             setUserData(data);
 
-            console.log(user)
-            console.log(data);
-
             if(resp.status !== 200)
             {
                 const err=new Error(resp.err);

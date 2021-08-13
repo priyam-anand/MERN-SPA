@@ -18,15 +18,6 @@ app.use(cookieParser())
 //Defined endpoints in another file
 app.use(require('./router/endpoints'));
 
-//ENDPOINTS
-
-app.get('/contact',(req,res)=>{
-    res.send("hello from contact page");
-});
-app.get('/signup',(req,res)=>{
-    res.send("hello from signup page");
-});
-
 //Server listen
 app.listen(PORT,()=>{
     console.log(`server is running at port ${PORT}`);

@@ -1,8 +1,80 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import phone from '../images/phone.png';
 import email from '../images/email.png';
 import address from '../images/address.png';
 const Home = () => {
+
+    const [userData, setUserData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        message: ""
+    })
+
+    const getUserData = async () => {
+        try {
+            const res = await fetch('/contact', {
+                method: "GET",
+                credentials: 'include',
+                headers: {
+                    Accept: "Application/json",
+                    "Content-Type": "Application/json",
+                },
+            })
+            const data = await res.json();
+
+            setUserData({...userData,
+                name: data.name,
+                email: data.email,
+                phone: data.phone
+            })
+            console.log(userData)
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+    let eventName,eventValue;
+    const handleInput = (event) =>{
+        eventName=event.target.name;
+        eventValue=event.target.value;
+
+        setUserData({...userData, [eventName]:eventValue});
+    }
+
+    useEffect(() => {
+        getUserData();
+    }, [])
+
+    const sendMessage = async (event) =>{
+        event.preventDefault();
+
+        const {name,email,phone,message} = userData;
+
+        const res= await fetch('/contact',{
+            method : "POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                name,email,phone,message
+            })
+        });
+
+        const data=await res.json();
+
+        if(!data)
+        {
+            window.alert("message not sent");
+        }
+        else
+        {
+            window.alert("message sent successfully");
+            setUserData({...userData,message:""});
+        }
+
+        }
+
     return (
         <>
             <h2>
@@ -48,27 +120,29 @@ const Home = () => {
                     <div className="row">
                         <div className="form-group col-md-3 mx-auto">
                             <div className="input-group">
-                                <input type="text" className="form-control my-input" id="contact_form_name" placeholder="Your Name" required="required" />
+                                <input type="text" name="name" className="form-control my-input form-text" value={userData.name} 
+                                onChange={handleInput} id="contact_form_name" placeholder="Your Name" required="required" />
                             </div>
                         </div>
 
                         <div className="form-group col-md-3 mx-auto">
                             <div className="input-group">
-                                <input type="email" className="form-control my-input" id="contact_form_email" placeholder="Your Email Address" required="required" />
+                                <input type="email" name="email" className="form-control my-input form-text" value={userData.email} 
+                                onChange={handleInput} id="contact_form_email" placeholder="Your Email Address" required="required" />
                             </div>
                         </div>
 
                         <div className="form-group col-md-3 mx-auto">
                             <div className="input-group">
-                                <input type="number" className="form-control my-input" id="contact_form_phone" placeholder="Your Phone Number" required="required" />
+                                <input type="number" name="phone" className="form-control my-input form-text" value={userData.phone} 
+                                onChange={handleInput} id="contact_form_phone" placeholder="Your Phone Number" required="required" />
                             </div>
                         </div>
-                        <textarea id="contact_form_message" className="col-md-11 my-5 mx-auto"
-                            rows="7" placeholder="Your message here">
+                        <textarea id="contact_form_message" className="col-md-11 my-5 mx-auto my-input form-text"
+                            rows="7" placeholder="Your message here" name="message" value={userData.message} onChange={handleInput}>
                         </textarea>
-                        
-                        <button className="btn btn-success col-md-2 mx-auto" type="submit">Send Message</button>
-                        
+
+                        <button className="btn btn-success col-md-2 mx-auto" type="submit" onClick={sendMessage}>Send Message</button>
                     </div>
                 </form>
             </div>
