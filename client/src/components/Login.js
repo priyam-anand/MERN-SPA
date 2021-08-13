@@ -1,11 +1,53 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React,{useState} from 'react'
+import { NavLink,useHistory } from 'react-router-dom'
 
 function Login() {
+
+    const [user,setUser]=useState({
+        email:"",
+        password:""
+    })
+
+    const history=useHistory();
+
+    const handleInput = (event)=>{
+        const eN=event.target.name;
+        const eV=event.target.value;
+
+        setUser({...user, [eN]:eV});
+    }
+
+    const handlePost = async (event)=>{
+
+        event.preventDefault();
+
+        const {email,password}=user;
+
+        const res= await fetch('/login',{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                email,password
+            })
+        })
+        const data=await res.json();
+        
+        if(res.status!==201 || !data)
+        {
+            window.alert("Login Failed")
+        }
+        else
+        {
+            window.alert("Login Success");
+            history.push('/');
+        }
+    }
     return (
         <>
             <div className="login-form">
-                <form>
+                <form method="POST">
                     <h2 className="text-center">Log in</h2>
                     <hr className="my-4"/>
                     <div className="form-group my-3">
@@ -15,7 +57,8 @@ function Login() {
                                     <span className="fa fa-user"></span>
                                 </span>
                             </div>
-                            <input type="text" className="form-control" name="email" placeholder="Email" required="required" />
+                            <input type="email" className="form-control" value={user.email} 
+                            onChange={handleInput} name="email" placeholder="Email" required="required" autoComplete="off"/>
                         </div>
                     </div>
                     <div className="form-group my-3">
@@ -25,11 +68,13 @@ function Login() {
                                     <i className="fa fa-lock"></i>
                                 </span>
                             </div>
-                            <input type="password" className="form-control" name="password" placeholder="Password" required="required" />
+                            <input type="password" className="form-control" value={user.password} 
+                            onChange={handleInput} name="password" placeholder="Password" required="required" />
                         </div>
                     </div>
                     <div className="form-group my-3">
-                        <button type="submit" className="btn btn-primary login-btn btn-block">Log in</button>
+                        <button type="submit" className="btn btn-primary login-btn btn-block" 
+                        onClick={handlePost}>Log in</button>
                     </div>
                     
                     <div className="or-seperator"><i>or</i></div>

@@ -2,6 +2,7 @@ const bcrypt=require('bcryptjs');
 const express = require('express');
 const app = express.Router();
 const jwt = require('jsonwebtoken');
+const authentication = require('../middleware/authentication');
 
 require('../DB/connect');
 const User = require('../Models/userSchema');
@@ -68,7 +69,7 @@ app.post('/login',async (req,res)=>{
 
         const token = await user.generateAuthToken();
 
-        res.cookie("jwt",token,{
+        res.cookie("jwtoken",token,{
             expires: new Date(Date.now()+25892000000),
             httpOnly:true
         });
@@ -81,5 +82,9 @@ app.post('/login',async (req,res)=>{
     }
 
 })
+
+app.get('/about',authentication,(req,res)=>{
+    res.send(req.rootUser);
+});
 
 module.exports = app;

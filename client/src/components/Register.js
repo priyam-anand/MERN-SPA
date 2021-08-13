@@ -32,7 +32,7 @@ const Register = () => {
         })
         const data = await res.json();
         console.log(data);
-        if(!data || data.status===422)
+        if(res.status!==201 || !data)
         {
             window.alert("Registration Failed")
         }
@@ -62,7 +62,7 @@ const Register = () => {
                             <span className="fa fa-user"></span>
                         </span>
                     </div>
-                    <input type="text" className="form-control" name="name" value={user.name} onChange={handleInput} placeholder="Username" required="required" />
+                    <input type="text" className="form-control" name="name" value={user.name} onChange={handleInput} placeholder="Username" required="required" autoComplete="off" />
                 </div>
             </div>
             <div className="form-group">
@@ -72,7 +72,7 @@ const Register = () => {
                             <i className="fa fa-paper-plane"></i>
                         </span>
                     </div>
-                    <input type="email" className="form-control" name="email" value={user.email} onChange={handleInput} placeholder="Email Address" required="required" />
+                    <input type="email" className="form-control" name="email" value={user.email} onChange={handleInput} placeholder="Email Address" required="required" autoComplete="off"/>
                 </div>
             </div>
             <div className="form-group">
@@ -82,7 +82,7 @@ const Register = () => {
                             <i className="fa fa-phone"></i>
                         </span>
                     </div>
-                    <input type="number" className="form-control" name="phone" value={user.phone} onChange={handleInput} placeholder="Phone Number" required="required" />
+                    <input type="number" className="form-control" name="phone" value={user.phone} onChange={handleInput} placeholder="Phone Number" required="required" autoComplete="off" />
                 </div>
             </div>
             <div className="form-group">
@@ -92,7 +92,7 @@ const Register = () => {
                             <i className="fa fa-briefcase"></i>
                         </span>
                     </div>
-                    <input type="text" className="form-control" name="work" value={user.work} onChange={handleInput} placeholder="Your Profession" required="required" />
+                    <input type="text" className="form-control" name="work" value={user.work} onChange={handleInput} placeholder="Your Profession" required="required" autoComplete="off" />
                 </div>
             </div>
             <div className="form-group">
