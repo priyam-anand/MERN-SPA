@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import React, { createContext, useContext, useReducer } from 'react'
+import React, { createContext, useReducer } from 'react'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
 import About from './components/About';

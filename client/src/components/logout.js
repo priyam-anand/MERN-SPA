@@ -21,7 +21,7 @@ const Logout = () => {
 
             setTimeout(history.push('/login'), 1500);
 
-            if(res.status != 200)
+            if(res.status !== 200)
             {
                 const err=new Error(res.err);
                 throw err;
