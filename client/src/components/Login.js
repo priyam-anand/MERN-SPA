@@ -1,7 +1,10 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { NavLink,useHistory } from 'react-router-dom'
+import {userContext} from '../App';
 
 function Login() {
+
+    const {state,dispatch} = useContext(userContext);
 
     const [user,setUser]=useState({
         email:"",
@@ -39,7 +42,8 @@ function Login() {
             window.alert("Login Failed")
         }
         else
-        {
+        {   
+            dispatch({type:'USER',payload:true})
             window.alert("Login Success");
             history.push('/');
         }

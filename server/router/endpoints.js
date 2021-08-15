@@ -131,4 +131,10 @@ app.post('/contact',authentication,async (req,res) => {
     }
 })
 
+app.get('/logout' , (req,res) => {
+    res.clearCookie("jwtoken" , {path:'/'});
+    res.status(200).send("user logout sucessfully")
+})
+
+
 module.exports = app;
