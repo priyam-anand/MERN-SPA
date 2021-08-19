@@ -37,13 +37,15 @@ function Login() {
         })
         const data=await res.json();
         
+        console.log(data)
+
         if(res.status!==201 || !data)
         {
             window.alert("Login Failed")
         }
         else
         {   
-            dispatch({type:'USER',payload:true})
+            dispatch({type:'USER',payload:{val:true,id:data.id}})
             window.alert("Login Success");
             history.push('/');
         }

@@ -17,7 +17,7 @@ const Logout = () => {
             }, 
         }).then((res)=>{
 
-            dispatch({type:"USER",payload:false});
+            dispatch({type:"USER",payload:{val:false,id:""}});
 
             setTimeout(history.push('/login'), 1500);
 

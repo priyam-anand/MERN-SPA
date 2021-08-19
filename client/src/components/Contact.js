@@ -13,7 +13,7 @@ const Home = () => {
 
     const getUserData = async () => {
         try {
-            const res = await fetch('/contact', {
+            const res = await fetch('/getdata', {
                 method: "GET",
                 credentials: 'include',
                 headers: {

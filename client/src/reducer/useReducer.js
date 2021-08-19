@@ -1,8 +1,11 @@
-export const initialState = null;
+export const initialState = {
+    val:false,
+    id:""
+};
 
 export const reducer = (state,action) =>{
     if(action.type === "USER"){
-        return action.payload;
+        return {val:action.payload.val, id:action.payload.id}
     }
     return state;
 }

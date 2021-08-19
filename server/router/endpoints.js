@@ -6,6 +6,7 @@ const authentication = require('../middleware/authentication');
 
 require('../DB/connect');
 const User = require('../Models/userSchema');
+const Blog = require('../Models/blogSchema');
 
 app.get('/', (req, res) => {
     res.send("hello world from the server ");
@@ -69,7 +70,7 @@ app.post('/login', async (req, res) => {
             httpOnly: true
         });
 
-        res.status(201).json({ message: "login successful" });
+        res.status(201).json({ id: user._id });
 
     } catch (err) {
         console.log(err);
@@ -81,7 +82,7 @@ app.get('/about', authentication, (req, res) => {
     res.send(req.rootUser);
 });
 
-app.get('/contact', async (req, res) => {
+app.get('/getdata',async (req,res)=>{
     const token = req.cookies.jwtoken;
     const verify = jwt.verify(token, process.env.SECRET_KEY);
     const rootUser = await User.findOne({ _id: verify._id, "tokens.token": token });
@@ -90,7 +91,8 @@ app.get('/contact', async (req, res) => {
         res.send({
             name: "",
             email: "",
-            phone: ""
+            phone: "",
+            id:""
         })
     }
     else
@@ -98,10 +100,10 @@ app.get('/contact', async (req, res) => {
         res.send({
             name: rootUser.name,
             email: rootUser.email,
-            phone: rootUser.phone
+            phone: rootUser.phone,
+            id:rootUser._id
         })
     }
-
 })
 
 app.post('/contact',authentication,async (req,res) => {
@@ -136,5 +138,30 @@ app.get('/logout' , (req,res) => {
     res.status(200).send("user logout sucessfully")
 })
 
+app.post('/addBlog',async  (req,res)=>{
+    try{
+        const {name,topic,autorId,message} = req.body;
 
+        if(!name || !topic || !message || !autorId)
+        {
+            return res.status(422).json({err:"please fill the blog entries correctly"})
+        }
+        const blog = new Blog({name:name,topic:topic,authorId:autorId,message:message});
+        const save = await blog.save();
+
+        if(save)
+        {
+            return res.status(201).json({message:"success"});
+        }
+        
+    }catch(err)
+    {
+        console.log(err);
+    }
+})
+
+app.get('/getblog',async (req,res)=>{
+    const blog = await Blog.find({});
+    return res.send(blog);
+})
 module.exports = app;

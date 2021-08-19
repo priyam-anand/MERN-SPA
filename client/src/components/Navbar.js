@@ -9,12 +9,16 @@ import { userContext } from '../App';
 const Navbar = () => {
 
     const { state, dispatch } = useContext(userContext);
+    console.log(state)
     const NavOptions = () => {
-        if (state) {
+        if (state.val) {
             return (
                 <>
                     <li className="nav-item mx-2">
                         <NavLink className="nav-link" to="/">Home</NavLink>
+                    </li>
+                    <li className="nav-item mx-2">
+                        <NavLink className="nav-link" to="/mainpage">mainPage</NavLink>
                     </li>
                     <li className="nav-item mx-2">
                         <NavLink className="nav-link" to="/about">About</NavLink>
@@ -33,6 +37,9 @@ const Navbar = () => {
                 <>
                     <li className="nav-item mx-2">
                         <NavLink className="nav-link" to="/">Home</NavLink>
+                    </li>
+                    <li className="nav-item mx-2">
+                        <NavLink className="nav-link" to="/mainpage">mainPage</NavLink>
                     </li>
                     <li className="nav-item mx-2">
                         <NavLink className="nav-link" to="/about">About</NavLink>

@@ -234,3 +234,48 @@ label{
   color: black;
   font-weight: normal;
 }
+
+.main-page-body{
+  min-height: 87vh;
+  background-image: linear-gradient(rgb(244, 244, 255),rgb(216, 216, 255));
+}
+
+.blog-container{
+  width: 70vw;
+}
+
+.author-sec{ 
+  padding: 0 2rem;
+  text-align: right;
+  font-style: italic;
+}
+.author-name{
+  font-weight: bold;
+}
+
+.blog-heading{
+  font-style: oblique;
+  padding: 1rem 0;
+  text-decoration: underline;
+}
+
+.blog-content{
+  color: #636363;
+}
+
+.blog-body{
+  background-color: rgb(245, 245, 245);
+}
+.add-blog-btn{
+  position: sticky;
+  bottom: 5vh;
+  left: 83vw;
+  box-shadow: 3px 3px 8px rgb(141, 141, 141);
+}
+.loading-spinner{
+  width: 95vw;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
